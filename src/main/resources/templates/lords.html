@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Повелители</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+<body  align="middle">
+<div class="container">
+    <h1>Повелители</h1>
+    <div align="middle">
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Возраст</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="l : ${lords}">
+                <td th:text="${l.name}"/>
+                <td th:text="${l.age}"/>
+            </tr>
+            </tbody>
+        </table>
+
+        <form th:action="@{/lords/add}"
+              th:object="${lord}" method="post" class="form-horizontal">
+            <div >
+                 <input name="name" placeholder="name" class="form-control"/>
+                <input name="age" placeholder="age" class="form-control"/>
+            </div>
+
+            <div style="margin-top: 10px" class="form-group">
+                <div>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </div>
+            <div class="row control">
+                <a th:href="@{/planets}"
+                   class="btn btn-default">Планеты</a>
+            </div>
+            <div class="row control">
+                <a th:href="@{/lords/lazy}"
+                   class="btn btn-default">Повелители бездельники</a>
+            </div>
+            <div class="row control">
+                <a th:href="@{/lords/top}"
+                   class="btn btn-default">Топ 10 молодых Повелителей</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

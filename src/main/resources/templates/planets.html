@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Повелители</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+<body align="middle">
+<div class="container">
+    <h1>Планеты</h1>
+    <div align="middle">
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>Имя планеты</th>
+                <th>Повелитель планеты</th>
+                <th>Возраст повелителя планеты</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="planet : ${planets}">
+                <td th:text="${planet.name}"/>
+                <td th:text="${planet.lord.name}"/>
+                <td th:text="${planet.lord.age}"/>
+                <td>
+                    <a th:href="@{'/planets/delete/' + ${planet.id}}" th:text="Удалить"/>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <form th:action="@{/planets/add}"
+              th:object="${planet}" method="post" class="form-horizontal">
+            <div >
+                <input name="name" placeholder="Имя планеты" class="form-control"/>
+
+
+            <select name="lord" class="custom-select form-control">
+                <option th:each="lord: ${lords}"
+                        th:value="${lord.id}" th:text="${lord.name}">
+            </select>
+            </div>
+
+            <div style="margin-top: 10px" class="form-group">
+                <div class="controls">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </div>
+
+            <div class="row control">
+                <a th:href="@{/lords}"
+                   class="btn btn-default">Повелители</a>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
