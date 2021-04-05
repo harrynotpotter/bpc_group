@@ -10,4 +10,10 @@ PostgresSQL
 `mvn spring-boot:run`
 
 ## Примечания
-приложение будет доступно на порту: 8189
+Приложение будет доступно на порту: 8189
+
+В application.properties задать свои параметры подключения к базе данных:
+
+`spring.datasource.url`
+`spring.datasource.username`
+`spring.datasource.password`
